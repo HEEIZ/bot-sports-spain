@@ -72,7 +72,7 @@ def eventos(message):
 
 		mensaje += emoji[i]+" "+titulo[i]+" - "+hora[i]+" - "+canal[i]+"\n\n"
 
-
+	mensaje += "\n\n\n 🤖: @sports_spain_bot"
 	bot.send_message(cid,mensaje)
 	bot.delete_message(message.chat.id, message.message_id)
 
@@ -84,4 +84,12 @@ def getMessage():
 	return "!", 200
 
 
-bot.polling()
+@server.route("/")
+def webhook():
+	bot.remove_webhook()
+	bot.set_webhook(url=WEBHOOK + TOKEN)
+	return "!", 200
+
+if __name__ == "__main__":
+	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+
