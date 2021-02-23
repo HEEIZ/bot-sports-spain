@@ -72,7 +72,7 @@ def eventos(message):
 
 		mensaje += emoji[i]+" "+titulo[i]+" - "+hora[i]+" - "+canal[i]+"\n\n"
 
-	mensaje += "\n\n\n 🤖: @sports_spain_bot"
+	mensaje += "\n\n 🤖: @sports_spain_bot"
 	bot.send_message(cid,mensaje)
 	bot.delete_message(message.chat.id, message.message_id)
 
