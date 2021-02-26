@@ -38,7 +38,6 @@ def eventos(message):
 	hoy = hoy.replace("</strong>", " ")
 	proximos_eventos = resp.split('<span class="title-section-widget"><strong>')[1].split('<span class="title-section-widget"><strong>')[0]
 	eventos_hoy = proximos_eventos.count('<li class="dailyevent">')
-	print(eventos_hoy)
 
 	mensaje = "["+hoy+"]\n\n\n"
 
@@ -67,6 +66,10 @@ def eventos(message):
 			emoji[i] = "🎾"
 		elif (deporte[i] == "icon-balonmano" ):
 			emoji[i] = "🤾"
+		elif (deporte[i] == "icon-motor" ):
+			emoji[i] = "🏎️"
+		elif (deporte[i] == "icon-futbol_sala" ):
+			emoji[i] = "⚽"
 		else:
 			emoji[i] = "🏆"
 
