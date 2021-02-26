@@ -118,6 +118,7 @@ def resultados(message):
 				visitante_score[i] = resp['data'][i]['score']['awayTeam']['totalScore']
 				local_score[i] = resp['data'][i]['score']['homeTeam']['totalScore']
 			deporte[i] = resp['data'][i]['sport']['alternateNames']['esES']
+			print(deporte[i])
 			if (deporte[i] == ('Baloncesto')):
 				emoji[i] = "🏀"
 			elif (deporte[i] == ('Fútbol Sala')):
