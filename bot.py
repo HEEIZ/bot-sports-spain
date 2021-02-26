@@ -79,7 +79,51 @@ def eventos(message):
 	bot.send_message(cid,mensaje)
 	bot.delete_message(message.chat.id, message.message_id)
 
+@bot.message_handler(commands=['resultados'])
+def resultados(message):
+	cid = message.chat.id
+	message = message.replace("/resultados ", "")
+	url = 'https://api.unidadeditorial.es/sports/v1/events/preset/1_99a16e5b?timezoneOffset=1&date='+str(d0)
+	respuesta = requests.get(url)
+	open('respuesta.json', 'wb').write(respuesta.content)
 
+	f = open('respuesta.json', encoding="utf-8")
+	json_file = json.load(f)
+	json_str = json.dumps(json_file)
+	resp = json.loads(json_str)
+
+	ocurrencias = json_str.count("status")	
+
+
+
+	visitante_equipo = {}
+	local_equipo = {}
+	status = {}
+	visitante_score = {}
+	local_score = {}
+
+	mensaje = "RESULTADOS DÍA "+str(d1)+ "\n\n"
+	for i in range (ocurrencias):
+		try:
+			visitante_equipo[i] = resp['data'][i]['sportEvent']['competitors']['awayTeam']['fullName']
+			local_equipo[i]= resp['data'][i]['sportEvent']['competitors']['homeTeam']['fullName']
+			status[i] = resp['data'][i]['sportEvent']['status']['alternateNames']['esES']
+
+			if (status[i] == 'Sin comenzar'):
+				visitante_score[i] = " "
+				local_score[i] = " "
+			else:
+				visitante_score[i] = resp['data'][i]['score']['awayTeam']['totalScore']
+				local_score[i] = resp['data'][i]['score']['homeTeam']['totalScore']
+
+			mensaje += local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
+		except:
+			pass
+		i = i+1
+
+	mensaje = mensaje + "\n🤖 @sports_spain_bot"
+	bot.send_message(cid,mensaje)
+	bot.delete_message(message.chat.id, message.message_id)
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
