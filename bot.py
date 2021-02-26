@@ -82,8 +82,10 @@ def eventos(message):
 @bot.message_handler(commands=['resultados'])
 def resultados(message):
 	cid = message.chat.id
-	message = message.replace("/resultados ", "")
-	url = 'https://api.unidadeditorial.es/sports/v1/events/preset/1_99a16e5b?timezoneOffset=1&date='+message
+	today = date.today() 
+	d0 = today.strftime("%Y-%m-%d")
+	d1 = today.strftime("%d-%m-%Y")
+	url = 'https://api.unidadeditorial.es/sports/v1/events/preset/1_99a16e5b?timezoneOffset=1&date='+str(d0)
 	respuesta = requests.get(url)
 	open('respuesta.json', 'wb').write(respuesta.content)
 
