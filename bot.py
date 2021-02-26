@@ -140,7 +140,7 @@ def resultados(message):
 				emoji[i] = "🎾"
 			else:
 				emoji[i] = "🏆"
-		mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
+			mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
 		except:
 			pass
 		i = i+1
