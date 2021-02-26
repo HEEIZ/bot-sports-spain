@@ -106,7 +106,8 @@ def resultados(message):
 	local_score = {}
 	deporte= {}
 	emoji = {}
-	mensaje = "RESULTADOS DÍA "+str(d1)+ "\n\n"
+
+	mensaje = "RESULTADOS DEL DÍA "+str(d1)+ "\n\n"
 	for i in range (ocurrencias):
 		try:
 			visitante_equipo[i] = resp['data'][i]['sportEvent']['competitors']['awayTeam']['fullName']
@@ -146,6 +147,7 @@ def resultados(message):
 
 			mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
 		except:
+			print(sys.exc_info()[0])
 			pass
 		i = i+1
 
