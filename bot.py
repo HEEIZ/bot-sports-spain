@@ -13,6 +13,7 @@ from datetime import datetime, timedelta, date
 TOKEN = os.environ['TOKEN']
 WEBHOOK = os.environ['WEBHOOK']
 
+
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
@@ -103,7 +104,8 @@ def resultados(message):
 	status = {}
 	visitante_score = {}
 	local_score = {}
-
+	deporte= {}
+	emoji = {}
 	mensaje = "RESULTADOS DÍA "+str(d1)+ "\n\n"
 	for i in range (ocurrencias):
 		try:
@@ -112,8 +114,8 @@ def resultados(message):
 			status[i] = resp['data'][i]['sportEvent']['status']['alternateNames']['esES']
 
 			if (status[i] == 'Sin comenzar'):
-				visitante_score[i] = " "
-				local_score[i] = " "
+				visitante_score[i] = "-"
+				local_score[i] = "-"
 			else:
 				visitante_score[i] = resp['data'][i]['score']['awayTeam']['totalScore']
 				local_score[i] = resp['data'][i]['score']['homeTeam']['totalScore']
@@ -141,6 +143,7 @@ def resultados(message):
 				emoji[i] = "🎾"
 			else:
 				emoji[i] = "🏆"
+
 			mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
 		except:
 			pass
@@ -149,6 +152,7 @@ def resultados(message):
 	mensaje = mensaje + "\n🤖 @sports_spain_bot"
 	bot.send_message(cid,mensaje)
 	bot.delete_message(message.chat.id, message.message_id)
+
 
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
