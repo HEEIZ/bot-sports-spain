@@ -144,11 +144,10 @@ def resultados(message):
 				emoji[i] = "🎾"
 			else:
 				emoji[i] = "🏆"
-
+			print(mensaje)
 			mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
 		except:
 			print(sys.exc_info()[0])
-			pass
 		i = i+1
 
 	mensaje = mensaje + "\n🤖 @sports_spain_bot"
