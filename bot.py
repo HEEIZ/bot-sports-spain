@@ -117,8 +117,30 @@ def resultados(message):
 			else:
 				visitante_score[i] = resp['data'][i]['score']['awayTeam']['totalScore']
 				local_score[i] = resp['data'][i]['score']['homeTeam']['totalScore']
-
-			mensaje += local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
+			deporte[i] = resp['data'][i]['sport']['alternateNames']['esES']
+			if (deporte[i] == ('Baloncesto')):
+				emoji[i] = "🏀"
+			elif (deporte[i] == ('Fútbol Sala')):
+				emoji[i] = "⚽"
+			elif (deporte[i] == ('Fútbol')):
+				emoji[i] = "⚽"
+			elif (deporte[i] == ('Motor')):
+				emoji[i] = "🏎️"
+			elif (deporte[i] == ('Ciclismo')):
+				emoji[i] = "🚴‍♂"
+			elif (deporte[i] == ('Atletismo')):
+				emoji[i] = "🏃‍♀️"
+			elif (deporte[i] == ('Rugby')):
+				emoji[i] = "🏉"
+			elif (deporte[i] == ('Boxeo')):
+				emoji[i] = "🥊"
+			elif (deporte[i] == ('Balonmano')):
+				emoji[i] = "🤾"
+			elif (deporte[i] == ('Tenis')):
+				emoji[i] = "🎾"
+			else:
+				emoji[i] = "🏆"
+		mensaje += emoji[i]+" "+local_equipo[i]+" ["+local_score[i]+"] - ["+visitante_score[i]+"] "+visitante_equipo[i]+"\n"
 		except:
 			pass
 		i = i+1
