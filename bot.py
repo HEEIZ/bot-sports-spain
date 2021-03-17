@@ -71,6 +71,8 @@ def eventos(message):
 			emoji[i] = "🏎️"
 		elif (deporte[i] == "icon-futbol_sala" ):
 			emoji[i] = "⚽"
+		elif (deporte[i] == "icon-vela" ):
+			emoji[i] = "⛵"
 		else:
 			emoji[i] = "🏆"
 
