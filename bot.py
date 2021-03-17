@@ -144,6 +144,8 @@ def resultados(message):
 				emoji[i] = "🤾"
 			elif (deporte[i] == ('Tenis')):
 				emoji[i] = "🎾"
+			elif (deporte[i] == "icon-vela" ):
+				emoji[i] = "⛵"
 			else:
 				emoji[i] = "🏆"
 			print(mensaje)
