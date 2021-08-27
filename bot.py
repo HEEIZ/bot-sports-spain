@@ -159,6 +159,27 @@ def resultados(message):
 	bot.delete_message(message.chat.id, message.message_id)
 
 
+@bot.message_handler(commands=['footters'])
+def footters(message):
+	today = date.today() 
+	d0 = today.strftime("%Y-%m-%d")
+	r = requests.get("https://api1.footters.com/api/v1/en/schedule/"+d0+"/267?tz=Europe%2FMadrid")
+	jsonResponse = r.json()
+
+	categorias = len(jsonResponse)
+	mensaje = ""
+	for x in range (categorias):
+		mensaje = mensaje +"**"+jsonResponse[x]["heading"] + "**\n"
+		for y in range (len(jsonResponse[x]["items"])):
+			mensaje = mensaje + "- " +jsonResponse[x]["items"][y]["title"]+" - " +jsonResponse[x]["items"][y]["subtitle"].split(" ")[1].split(",")[0]+ " - https://play.footters.com"+jsonResponse[x]["items"][y]["url"]+     "\n"
+
+
+	bot.send_message(cid,mensaje)
+	bot.delete_message(message.chat.id, message.message_id)
+
+
+
+
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
 	bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
