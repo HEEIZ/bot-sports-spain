@@ -10,8 +10,8 @@ from datetime import datetime, timedelta, date
 
 
 
-TOKEN = os.environ['TOKEN']
-WEBHOOK = os.environ['WEBHOOK']
+TOKEN = os.environ['5582073607:AAFSpxtNzvAdeY-63dZBcQVbkCU0HuLYVyo']
+WEBHOOK = os.environ['https://keysbot.herokuapp.com/']
 
 
 bot = telebot.TeleBot(TOKEN)
